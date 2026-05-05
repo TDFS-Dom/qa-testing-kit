@@ -12,9 +12,17 @@
 ```
 qa-testing-kit/
 ├── POWER.md                                    # Main documentation + global rules
-├── package.json                                # Power metadata + keywords
+├── mcp.json                                    # MCP server config (Jira/Xray)
 ├── README.md                                   # Hướng dẫn cài đặt
+├── mcp-server/                                 # MCP server source
+│   ├── index.js
+│   └── package.json
 └── steering/                                   # Guided workflows & rules
+    ├── qa-contract.md                          # Core contract (paths, lifecycle, behavior)
+    ├── qa-routing.md                           # NLP intent → command dispatch
+    ├── qa-skill-next.md                        # State-aware next step detection
+    ├── qa-impact.md                            # Change impact analysis
+    ├── qa-token-budget.md                      # Context budget guardrails
     ├── automation-rules.md                     # Quy tắc chung automation (POM, naming...)
     ├── locator-strategy.md                     # Chiến lược chọn locator
     ├── playwright-rules.md                     # Quy tắc Playwright
@@ -40,27 +48,6 @@ Power này được kích hoạt khi user nhắc đến:
 - test cases, manual testing, locator, pom, page object
 - test data, flaky tests, api testing, rbt, risk based testing
 - framework, testng, jira, xray
-
-## Mapping từ Antigravity → Kiro Power
-
-| Antigravity (cũ) | Kiro Power (mới) |
-|---|---|
-| `.agent/rules/*` | `steering/automation-rules.md`, `steering/*-rules.md` |
-| `.agent/skills/qa_automation_engineer/` | `POWER.md` (workflow routing) |
-| `.agent/skills/rbt_manual_testing/` | `steering/workflow-generate-manual-testcases-rbt.md` + `workflow-generate-testcases-quick.md` |
-| `.agent/skills/requirements_analyzer/` | `steering/workflow-generate-requirements.md` |
-| `.agent/skills/ui_debug_agent/` | Integrated into `POWER.md` + `steering/playwright-rules.md` |
-| `.agent/skills/smart_locator_agent/` | `steering/workflow-generate-locator.md` |
-| `.agent/skills/locator_healer_agent/` | `steering/workflow-generate-locator.md` (Healing section) |
-| `.agent/skills/test_data_generator/` | `steering/workflow-generate-test-data.md` |
-| `.agent/skills/flaky_test_analyzer/` | `steering/workflow-analyze-flaky-tests.md` |
-| `.agent/skills/framework_architect/` | `steering/workflow-generate-framework.md` |
-| `.agent/skills/jira_integration/` | `steering/workflow-jira-integration.md` |
-| `.agent/workflows/*` | `steering/workflow-*.md` |
-| `GEMINI.md` + `RULE_GLOBAL.md` | `POWER.md` (Global Rules section) |
-| `plans/manual/` | `steering/workflow-generate-manual-testcases-rbt.md` |
-| `plans/automation/` | `steering/workflow-generate-automation.md` + `workflow-generate-framework.md` |
-| `plans/cross-module/` | `steering/workflow-cross-module-testing.md` |
 
 ## Tác giả
 
