@@ -1,0 +1,17 @@
+{
+  "name": "qa-testing-kit-jira-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for Jira/Xray integration — fetch requirements, push test results",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "qa-testing-kit-jira-mcp": "./index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "axios": "^1.7.0"
+  },
+  "keywords": ["mcp", "jira", "xray", "testing", "qa"],
+  "author": "TDFS-Dom",
+  "license": "MIT"
+}

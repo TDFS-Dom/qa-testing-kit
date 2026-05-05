@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "jira-xray": {
+      "command": "npx",
+      "args": ["-y", "qa-testing-kit-jira-mcp@latest"],
+      "env": {
+        "JIRA_BASE_URL": "${JIRA_BASE_URL}",
+        "JIRA_EMAIL": "${JIRA_EMAIL}",
+        "JIRA_API_TOKEN": "${JIRA_API_TOKEN}",
+        "JIRA_PAT": "${JIRA_PAT}",
+        "JIRA_PROJECT_KEY": "${JIRA_PROJECT_KEY}",
+        "XRAY_PLATFORM": "${XRAY_PLATFORM}",
+        "XRAY_CLIENT_ID": "${XRAY_CLIENT_ID}",
+        "XRAY_CLIENT_SECRET": "${XRAY_CLIENT_SECRET}"
+      }
+    }
+  }
+}
