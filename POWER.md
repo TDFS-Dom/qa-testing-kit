@@ -8,179 +8,156 @@ author: "TDFS-Dom"
 
 # QA Testing Kit — Kiro Power
 
-> **Bộ Kit QA Testing toàn diện** cho cả Manual & Automation Testing. Hỗ trợ Playwright, Selenium, Appium với MCP server cho Jira/Xray integration.
+Bộ Kit QA Testing toàn diện cho cả Manual & Automation Testing. Hỗ trợ Playwright, Selenium, Appium với MCP server cho Jira/Xray integration.
 
-## Tổng quan
+## Overview
 
-Power này cung cấp sẵn các quy tắc hành vi (Rules), kỹ năng (Skills), và quy trình (Workflows) để hỗ trợ AI Agent thực hiện toàn bộ vòng đời kiểm thử phần mềm:
+Power này cung cấp **lifecycle-driven QA workflow** — từ phân tích yêu cầu đến báo cáo kết quả, với state tracking và impact analysis.
 
-- Phân tích yêu cầu (Requirements Analysis)
-- Thiết kế test cases (Manual Testing — QUICK & FULL RBT)
+**QA Lifecycle:**
+```
+requirements → test-plan → test-cases → automation → execution → report
+```
+
+**Key capabilities:**
+- Phân tích yêu cầu (Requirements Analysis) từ website/Jira
+- Thiết kế test cases (QUICK mode & FULL RBT 6 bước)
 - Sinh automation scripts (Playwright, Selenium, Appium)
-- Sinh test data có cấu trúc
+- Sinh test data có cấu trúc (positive, negative, boundary, combinatorial)
 - Phân tích & sửa flaky tests
 - Sinh locators ổn định
 - Thiết kế automation framework
-- Tích hợp Jira/Xray
+- Tích hợp Jira/Xray (fetch requirements, push results)
+- State-aware continuation (biết đang ở đâu, recommend next step)
+- Impact analysis (đánh giá ảnh hưởng khi thay đổi)
 
 ## Available MCP Servers
 
-Power này bao gồm MCP server `jira-xray` cho tích hợp Jira/Xray:
+### jira-xray
 
-### Tools
+**Connection:** `npx -y qa-testing-kit-jira-mcp@latest`
 
 | Tool | Mô tả |
 |---|---|
-| `fetch_jira_issue` | Lấy 1 Jira issue theo key (PROJ-123) → trả về markdown/json |
-| `fetch_jira_issues` | Lấy nhiều issues theo project, type, hoặc JQL |
-| `fetch_epic_children` | Lấy tất cả children của 1 Epic |
+| `fetch_jira_issue` | Lấy 1 Jira issue theo key → markdown/json |
+| `fetch_jira_issues` | Lấy nhiều issues (project/type/JQL) |
+| `fetch_epic_children` | Lấy children của Epic |
 | `xray_authenticate` | Xác thực Xray Cloud API |
 | `xray_import_results` | Import test results (Playwright/JUnit) lên Xray |
-| `test_jira_connection` | Test kết nối đến Jira API |
+| `test_jira_connection` | Test kết nối Jira API |
 
-### Environment Variables (cần cấu hình)
+**Environment Variables:**
 
-| Variable | Mô tả | Bắt buộc |
-|---|---|---|
-| `JIRA_BASE_URL` | URL Jira instance | ✅ |
-| `JIRA_EMAIL` | Email tài khoản (Cloud) | Cloud |
-| `JIRA_API_TOKEN` | API Token (Cloud) | Cloud |
-| `JIRA_PAT` | Personal Access Token (Server/DC) | Server |
-| `JIRA_PROJECT_KEY` | Project key mặc định | Khuyến nghị |
-| `XRAY_PLATFORM` | `cloud` hoặc `server` | Mặc định: cloud |
-| `XRAY_CLIENT_ID` | Xray Client ID | Xray Cloud |
-| `XRAY_CLIENT_SECRET` | Xray Client Secret | Xray Cloud |
-
----
+| Variable | Mô tả |
+|---|---|
+| `JIRA_BASE_URL` | URL Jira instance |
+| `JIRA_EMAIL` | Email tài khoản (Cloud) |
+| `JIRA_API_TOKEN` | API Token (Cloud) |
+| `JIRA_PAT` | Personal Access Token (Server/DC) |
+| `JIRA_PROJECT_KEY` | Project key mặc định |
+| `XRAY_PLATFORM` | `cloud` hoặc `server` |
+| `XRAY_CLIENT_ID` | Xray Client ID |
+| `XRAY_CLIENT_SECRET` | Xray Client Secret |
 
 ## When to Load Steering Files
 
-Load steering file phù hợp dựa trên tác vụ user yêu cầu:
+### Always-loaded (core contract + routing)
+- Understanding QA lifecycle, paths, prerequisites, behavior rules → `qa-contract.md`
+- Routing user intent to correct workflow → `qa-routing.md`
 
-- Writing automation tests or reviewing automation code → `automation-rules.md`
-- Finding or generating locators for UI elements → `locator-strategy.md`
-- Working with Playwright framework → `playwright-rules.md`
-- Working with Selenium framework → `selenium-rules.md`
-- Working with Appium mobile automation → `appium-rules.md`
-- Generating manual test cases quickly from requirements → `workflow-generate-testcases-quick.md`
-- Generating manual test cases with full RBT 6-step process → `workflow-generate-manual-testcases-rbt.md`
-- Converting manual test cases to automation scripts → `workflow-generate-automation.md`
-- Generating requirements from website analysis → `workflow-generate-requirements.md`
-- Designing or scaffolding automation framework → `workflow-generate-framework.md`
-- Generating structured test data → `workflow-generate-test-data.md`
-- Analyzing and fixing flaky tests → `workflow-analyze-flaky-tests.md`
-- Generating stable locators for elements → `workflow-generate-locator.md`
-- Generating API tests from Swagger/OpenAPI → `workflow-generate-api-tests.md`
-- Analyzing cross-module features or combinatorial testing → `workflow-cross-module-testing.md`
-- Integrating with Jira or pushing results to Xray → `workflow-jira-integration.md`
+### On-demand (load per active command)
+- Detecting next step in lifecycle → `qa-skill-next.md`
+- Analyzing change impact before mutation → `qa-impact.md`
+- Token budget management → `qa-token-budget.md`
+- Writing automation tests → `automation-rules.md`
+- Finding/generating locators → `locator-strategy.md`
+- Working with Playwright → `playwright-rules.md`
+- Working with Selenium → `selenium-rules.md`
+- Working with Appium → `appium-rules.md`
+- Generating test cases quickly → `workflow-generate-testcases-quick.md`
+- Generating test cases with RBT 6-step → `workflow-generate-manual-testcases-rbt.md`
+- Converting test cases to automation → `workflow-generate-automation.md`
+- Generating requirements from website → `workflow-generate-requirements.md`
+- Designing automation framework → `workflow-generate-framework.md`
+- Generating test data → `workflow-generate-test-data.md`
+- Analyzing flaky tests → `workflow-analyze-flaky-tests.md`
+- Generating stable locators → `workflow-generate-locator.md`
+- Generating API tests from Swagger → `workflow-generate-api-tests.md`
+- Cross-module combinatorial testing → `workflow-cross-module-testing.md`
+- Jira/Xray integration → `workflow-jira-integration.md`
 
----
+## Quick Start
 
-## Quy tắc toàn cục (Global Rules)
+### Bắt đầu dự án QA mới
+```
+Tôi có URL website, hãy phân tích và sinh requirements
+```
 
-### 🔐 Security & Credentials (ƯU TIÊN CAO NHẤT)
+### Tiếp tục dự án
+```
+Tiếp tục dự án, bước tiếp theo là gì?
+```
 
-- **CẤM** đọc file `.env` trực tiếp để lấy credentials
-- **CẤM** in thông tin nhạy cảm (API Keys, Passwords, Tokens) ra chat
-- **CẤM** commit file chứa credentials lên repository
+### Sinh test cases nhanh
+```
+Sinh test cases từ requirements này
+```
 
-### 🗣️ Ngôn ngữ & Giao tiếp
+### Sinh automation
+```
+Convert test cases sang Playwright automation
+```
 
-- Luôn giao tiếp, phân tích và báo cáo bằng **Tiếng Việt**
-- Code comments có thể viết bằng Tiếng Anh
-- Tên biến, hàm, class luôn viết bằng Tiếng Anh
+### Đánh giá thay đổi
+```
+Thêm validation cho field email — đánh giá ảnh hưởng
+```
 
-### 🖥️ Browser Rules
+## Output Directory Structure
 
-- Viewport debug: **1920×1080** (desktop)
-- Headed mode bắt buộc khi debug
-- Headless chỉ khi test đã PASS hoặc trong CI/CD
-- Thứ tự MCP: `navigate → resize(1920×1080) → wait → snapshot → interact → screenshot(on_fail)`
+```
+qa-output/{slug}/
+├── PROJECT.md                          # Project overview + status
+├── project-memory.md                   # Decisions, vocabulary, corrections
+├── 01_requirements/
+│   └── requirements.md
+├── 02_test-plan/
+│   └── test-plan.md
+├── 03_test-cases/
+│   ├── {module-a}/test-cases.md
+│   └── {module-b}/test-cases.md
+├── 04_automation/
+│   ├── locator-collection.md
+│   └── src/
+│       ├── pages/
+│       ├── tests/
+│       └── utils/
+├── 05_execution/
+│   ├── task.md
+│   └── results.md
+└── 06_report/
+    └── report.md
+```
 
-### 🏗️ Architecture
+## Behavior Rules (Summary)
 
-- Bắt buộc **Page Object Model (POM)**
-- Phân tách: Page classes / Test classes / Test data
-- Assertions chỉ trong Test classes
+Full rules in `qa-contract.md`. Key points:
 
-### ⏱️ Smart Waits (NGHIÊM CẤM hard sleep)
+1. **Fail-Closed** — Never guess slug/module. Ask if ambiguous.
+2. **Overwrite Protection** — Ask before mutating existing artifacts.
+3. **Impact-First** — Changes to existing artifacts go through impact analysis first.
+4. **Auto-Heal (E3)** — Test FAIL → self-fix loop (max 5 rounds), no user questions.
+5. **Smart Waits Only** — NGHIÊM CẤM `Thread.sleep()` / `waitForTimeout()`.
+6. **POM Mandatory** — Page Object Model for all automation.
+7. **Traceable Data** — All test data: `<prefix>_<testName>_<timestamp>`.
+8. **Security** — Never read .env, never print credentials.
 
-| Framework | Smart Wait |
-|---|---|
-| Playwright | `expect().toBeVisible()`, `expect().toBeEnabled()`, Locator APIs |
-| Selenium | `WebDriverWait` + `ExpectedConditions` |
-| Appium | `WebDriverWait` + custom conditions |
+## Tech Stack
 
-### 🧪 Test Data
-
-- Tất cả field unique: **BẮT BUỘC** dùng random + traceable
-- Format: `<prefix>_<testName>_<timestamp>`
-- Ví dụ: `auto_login_1712049200@test.com`
-
-### ✅ Definition of Done
-
-Test chỉ hoàn thành khi:
-- [ ] Xóa debug logs, commented code, unused locators
-- [ ] Tuân thủ POM — locator trong Page class, không inline
-- [ ] Test PASS ổn định 2 lần liên tiếp (headed mode)
-- [ ] Assertion có message rõ ràng
-- [ ] Test data unique + traceable
-- [ ] Không có `waitForTimeout()` / `Thread.sleep()`
-
-### ❌ Anti-Patterns (FORBIDDEN)
-
-| Anti-Pattern | Thay thế đúng |
-|---|---|
-| Đoán locator | Inspect DOM thực tế |
-| Hard sleep | Smart waits |
-| Copy locator cũ không verify | Verify trên browser hiện tại |
-| Viết test không chạy ngay | Chạy test ngay sau implement |
-| Commit test FAIL | Chỉ commit khi PASS ổn định |
-| Debug log khi deliver | Cleanup trước deliver |
-| Test data hardcoded | Random + traceable |
-
----
-
-## Tech Stack hỗ trợ
-
-| Loại | Công nghệ |
-|---|---|
-| Ngôn ngữ | Java, TypeScript, Python |
-| Web Automation | Playwright (TS/Java/Python), Selenium (Java/Python) |
-| Mobile Automation | Appium (Java) |
-| API Automation | REST Assured, Playwright API |
-| Test Framework | TestNG, Playwright Test, Pytest |
-| Build Tool | Maven, npm, pip |
-| Reporting | Allure, HTML Report, ExtentReports |
-
----
-
-## Workflow Routing
-
-Khi user yêu cầu một tác vụ, chọn steering file phù hợp:
-
-| User yêu cầu | Steering file |
-|---|---|
-| "sinh test cases nhanh", "tạo TC từ requirement" | `workflow-generate-testcases-quick.md` |
-| "quy trình 6 bước", "sinh TC đầy đủ", "RBT" | `workflow-generate-manual-testcases-rbt.md` |
-| "convert TC sang automation", "sinh Playwright/Selenium script" | `workflow-generate-automation.md` |
-| "sinh requirements từ website" | `workflow-generate-requirements.md` |
-| "tạo framework", "scaffold project" | `workflow-generate-framework.md` |
-| "sinh test data", "boundary data" | `workflow-generate-test-data.md` |
-| "test flaky", "test không ổn định" | `workflow-analyze-flaky-tests.md` |
-| "sinh locator", "tìm selector" | `workflow-generate-locator.md` |
-| "API test từ Swagger" | `workflow-generate-api-tests.md` |
-| "cross-module", "ma trận kết hợp" | `workflow-cross-module-testing.md` |
-| "lấy requirement từ Jira", "push Xray" | `workflow-jira-integration.md` |
-
----
-
-## Cleanup Rules
-
-Cuối mỗi nhiệm vụ, agent PHẢI:
-1. Scan workspace tìm file tạm (`*_debug.txt`, `*.tmp`, `scratch_*`)
-2. Xóa tất cả file tạm
-3. Báo cáo cleanup summary
-
-**KHÔNG xóa:** `playwright-report/`, `test-results/`, `logs/`, `node_modules/`, `.git/`, config files.
-
+| Platform | Framework | Language | Runner |
+|---|---|---|---|
+| Web | Playwright | TypeScript/Java/Python | Playwright Test/TestNG/Pytest |
+| Web | Selenium | Java/Python | TestNG/Pytest |
+| Mobile | Appium | Java | TestNG |
+| API | REST Assured | Java | TestNG |
+| API | Playwright API | TypeScript | Playwright Test |
