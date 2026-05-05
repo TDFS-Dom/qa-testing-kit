@@ -161,3 +161,21 @@ Full rules in `qa-contract.md`. Key points:
 | Mobile | Appium | Java | TestNG |
 | API | REST Assured | Java | TestNG |
 | API | Playwright API | TypeScript | Playwright Test |
+
+
+---
+
+## Changelog
+
+### v1.1.0 (2025-05-06)
+- Added lifecycle-driven architecture (qa-contract, qa-routing, qa-impact, qa-skill-next, qa-token-budget)
+- State-aware continuation: "tiếp tục" → inspect artifacts → recommend next step
+- Impact-first rule: changes go through triage before mutation
+- Output directory structure chuẩn hóa (`qa-output/{slug}/`)
+- Project memory pattern for cross-session continuity
+
+### v1.0.0 (2025-05-06)
+- Initial release
+- 16 steering files (5 rules + 11 workflows)
+- MCP server for Jira/Xray (6 tools)
+- Full coverage: Manual TC, Automation, Framework, API, Locator, Flaky, Test Data, Cross-module, Jira/Xray
