@@ -1,14 +1,14 @@
 ---
 name: "qa-testing-kit"
 displayName: "QA Testing Kit"
-description: "Bộ Kit QA Testing toàn diện cho Manual & Automation Testing — hỗ trợ Playwright, Selenium, Appium. Sinh test cases, automation scripts, locators, test data, và phân tích flaky tests."
+description: "Bộ Kit QA Testing toàn diện cho Manual & Automation Testing — hỗ trợ Playwright, Selenium, Appium (Java only, kèm template `templates/appium/`). Sinh test cases, automation scripts, locators, test data, và phân tích flaky tests."
 keywords: ["testing", "qa", "automation", "playwright", "selenium", "appium", "test cases", "manual testing", "locator", "pom", "page object", "test data", "flaky tests", "api testing", "rbt", "framework", "testng", "jira", "xray"]
 author: "TDFS-Dom"
 ---
 
 # QA Testing Kit — Kiro Power
 
-Bộ Kit QA Testing toàn diện cho cả Manual & Automation Testing. Hỗ trợ Playwright, Selenium, Appium với MCP server cho Jira/Xray integration.
+Bộ Kit QA Testing toàn diện cho cả Manual & Automation Testing. Hỗ trợ Playwright, Selenium, Appium (Java only, kèm template `templates/appium/`) với MCP server cho Jira/Xray integration.
 
 ## Overview
 
@@ -22,7 +22,7 @@ requirements → test-plan → test-cases → automation → execution → repor
 **Key capabilities:**
 - Phân tích yêu cầu (Requirements Analysis) từ website/Jira
 - Thiết kế test cases (QUICK mode & FULL RBT 6 bước)
-- Sinh automation scripts (Playwright, Selenium, Appium)
+- Sinh automation scripts (Playwright, Selenium, Appium Java kèm template `templates/appium/`)
 - Sinh test data có cấu trúc (positive, negative, boundary, combinatorial)
 - Phân tích & sửa flaky tests
 - Sinh locators ổn định
@@ -73,7 +73,7 @@ requirements → test-plan → test-cases → automation → execution → repor
 - Finding/generating locators → `locator-strategy.md`
 - Working with Playwright → `playwright-rules.md`
 - Working with Selenium → `selenium-rules.md`
-- Working with Appium → `appium-rules.md`
+- Working with Appium (Java only) → `appium-rules.md`; template scaffold: `templates/appium/`
 - Generating test cases quickly → `workflow-generate-testcases-quick.md`
 - Generating test cases with RBT 6-step → `workflow-generate-manual-testcases-rbt.md`
 - Converting test cases to automation → `workflow-generate-automation.md`
@@ -166,6 +166,14 @@ Full rules in `qa-contract.md`. Key points:
 ---
 
 ## Changelog
+### Chưa phát hành (2026-11-14)
+- Chạy thật smoke test Appium (app Settings) trên emulator Pixel_6, Android 17 (API 37.2), Appium server 3.9.0 + uiautomator2 8.7.3, java-client 9.5.0: 10/10 pass khi server chạy với `--allow-insecure=uiautomator2:adb_shell`; không có cờ thì 9/10 (`androidSpecificApis` fail ở `mobile: shell`). Mỗi session Appium cần emulator/device riêng (UiAutomator2 dùng cổng cố định 6790 trên device). Template tăng `uiautomator2ServerLaunchTimeout`/`adbExecTimeout` lên 90s/60s cho emulator chậm. iOS/XCUITest, device thật, Appium 2.x chưa chạy. Chi tiết: `.agents/tasks/appium-device-run-report.md`
+
+### v1.2.0 (2026-11-11)
+- Viết lại `appium-rules.md` (Java only, Appium 2.x, java-client 9.x), chỉ dùng API đã compile
+- Thêm template `templates/appium/` (Maven, TestNG, DriverFactory, GestureHelper, Screen Object); đã compile, chưa chạy trên device
+- Routing mobile/Android/iOS/Appium; đồng bộ locator order; thêm mục Mobile/Appium flaky
+- Ghi chú import kết quả Appium lên Xray bằng `format: "junit"`
 
 ### v1.1.0 (2025-05-06)
 - Added lifecycle-driven architecture (qa-contract, qa-routing, qa-impact, qa-skill-next, qa-token-budget)

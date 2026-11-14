@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- Smoke suite cho Android: chỉ dùng app Settings có sẵn, không cần APK/credential. LoginTest không nằm trong suite này. -->
+<suite name="AppiumSmoke" parallel="false">
+    <test name="SettingsSmoke">
+        <classes>
+            <class name="com.qakit.appium.tests.SettingsSmokeTest"/>
+        </classes>
+    </test>
+</suite>

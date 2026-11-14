@@ -43,6 +43,7 @@
 | Thành phần | Quy tắc | Ví dụ |
 |---|---|---|
 | Page class | PascalCase + hậu tố `Page` | `LoginPage.java` |
+| Screen class (mobile) | PascalCase + hậu tố `Screen` | `LoginScreen.java` |
 | Test class | PascalCase + hậu tố `Test` | `LoginTest.java` |
 | Test method | Bắt đầu bằng `test` + mô tả hành vi | `testLoginWithValidCredentials()` |
 | Locator biến | lowerCamelCase + hậu tố mô tả element | `loginButton`, `usernameInput` |

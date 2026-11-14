@@ -37,14 +37,14 @@ Guardrail cho context window. Kiểm soát steering file loading.
 | next | qa-contract + qa-skill-next | ~5KB |
 | Playwright-specific | + playwright-rules | +3KB |
 | Selenium-specific | + selenium-rules | +3KB |
-| Appium-specific | + appium-rules | +3KB |
+| Appium-specific | + appium-rules | +5KB |
 
 ## Framework-Specific Loading
 
 Chỉ load framework rules khi command cần:
 - `automation` + Playwright → load `playwright-rules.md`
 - `automation` + Selenium → load `selenium-rules.md`
-- `automation` + Appium → load `appium-rules.md`
+- `automation` + mobile/Android/iOS/Appium → load `appium-rules.md` cùng `workflow-generate-automation.md` (chỉ đọc `templates/appium/` khi scaffold, không load mặc định)
 - `locator` → load `locator-strategy.md` + framework-specific
 
 ## Khi budget tight

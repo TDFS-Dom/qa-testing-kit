@@ -1,6 +1,6 @@
 # QA Testing Kit — Kiro Power 🚀
 
-> Bộ Kit QA Testing toàn diện cho Manual & Automation Testing — Kiro Power format. Hỗ trợ Playwright, Selenium, Appium với MCP server cho Jira/Xray integration.
+> Bộ Kit QA Testing toàn diện cho Manual & Automation Testing — Kiro Power format. Hỗ trợ Playwright, Selenium, Appium (Java only, kèm template `templates/appium/`) với MCP server cho Jira/Xray integration.
 
 ## Cài đặt
 
@@ -17,6 +17,8 @@ qa-testing-kit/
 ├── mcp-server/                                 # MCP server source
 │   ├── index.js
 │   └── package.json
+├── templates/
+│   └── appium/                                 # Template Appium Java (Maven, TestNG, Screen Object)
 └── steering/                                   # Guided workflows & rules
     ├── qa-contract.md                          # Core contract (paths, lifecycle, behavior)
     ├── qa-routing.md                           # NLP intent → command dispatch

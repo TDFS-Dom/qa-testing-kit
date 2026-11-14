@@ -33,6 +33,13 @@
 3. Verify locator bằng cách thử tương tác
 4. Ghi nhận bảng Locator Collection (Primary + Fallback)
 
+> **Mobile (Appium Java)** — thay cho Bước 2 (browser) và bổ sung Bước 6; load `appium-rules.md`:
+> 1. Cần device/emulator/simulator đang chạy và app (APK/IPA/bundle id).
+> 2. Cài driver một lần: `appium driver install uiautomator2` / `xcuitest`; khởi động server: `appium` (port 4723).
+> 3. Inspect UI bằng Appium Inspector hoặc `driver.getPageSource()` trước khi viết locator.
+> 4. Sinh Screen Object (`LoginScreen`), scaffold từ `templates/appium/`.
+> 5. Chạy: `mvn test -Dplatform=android` (hoặc `ios`).
+
 ### Bước 3: Thiết kế POM
 
 1. Xác định danh sách Page classes
