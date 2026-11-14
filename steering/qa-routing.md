@@ -10,7 +10,7 @@ Khi user dùng ngôn ngữ tự nhiên, route intent theo bảng sau. Đây là 
 | Sinh test plan / lập kế hoạch test | `test-plan` | `workflow-generate-manual-testcases-rbt.md` (Bước 1-4) |
 | Sinh test cases nhanh / tạo TC | `test-cases` (QUICK) | `workflow-generate-testcases-quick.md` |
 | Sinh TC đầy đủ / quy trình 6 bước / RBT | `test-cases` (FULL RBT) | `workflow-generate-manual-testcases-rbt.md` |
-| Convert TC sang automation / sinh script | `automation` | `workflow-generate-automation.md` |
+| Convert TC sang automation / sinh script | `automation` | `workflow-generate-automation.md` (+ `appium-rules.md` nếu mobile) |
 | Tạo framework / scaffold project | `framework` | `workflow-generate-framework.md` |
 | Sinh test data / boundary data | `test-data` | `workflow-generate-test-data.md` |
 | Sinh locator / tìm selector | `locator` | `workflow-generate-locator.md` |
@@ -31,6 +31,7 @@ Khi ambiguous:
 - **Prefer `impact`** nếu user đề cập thay đổi artifact đã tồn tại
 - **Prefer `test-cases` QUICK** nếu user nói "sinh TC" mà không nói "6 bước" hay "RBT"
 - **Prefer `automation`** nếu user nói "Playwright" hoặc "Selenium" kèm "test"
+- **Prefer `automation` (mobile)** nếu user nhắc mobile / Android / iOS / app / emulator / simulator / Appium: load `appium-rules.md` cùng `workflow-generate-automation.md`
 
 ## Natural Language Aliases
 
@@ -39,6 +40,7 @@ Khi ambiguous:
 | Tạo TC / viết test cases | test-cases (QUICK) |
 | Quy trình 6 bước / RBT / phân tích rủi ro | test-cases (FULL RBT) |
 | Viết automation / convert sang code | automation |
+| Test app mobile / Android / iOS / emulator / simulator / Appium | automation (mobile, load `appium-rules.md`) |
 | Dựng framework / scaffold | framework |
 | Tìm locator / inspect UI | locator |
 | Test hay fail / flaky | flaky-analysis |

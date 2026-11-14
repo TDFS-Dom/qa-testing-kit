@@ -20,7 +20,7 @@
 1. `id` → 2. `data-testid` → 3. `name` → 4. `cssSelector` → 5. `xpath`
 
 ### Appium
-1. `accessibility id` → 2. `resource-id` → 3. `id` → 4. `iOS predicate` → 5. `class chain` → 6. `xpath`
+1. `accessibility id` → 2. `id` / `resource-id` → 3. iOS class chain / predicate → 4. UiAutomator (Android) → 5. `className` → 6. `xpath` (chi tiết: `appium-rules.md` mục 4)
 
 ## Validation Rules
 

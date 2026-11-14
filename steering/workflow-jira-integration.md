@@ -85,6 +85,8 @@ Args: {
 }
 ```
 
+**Appium (Java/TestNG):** Surefire sinh XML dạng JUnit tại `target/surefire-reports/TEST-*.xml`. Import với `"format": "junit"`.
+
 ## Test Key Convention
 
 Đặt test key trong title để Xray mapping đúng test case:

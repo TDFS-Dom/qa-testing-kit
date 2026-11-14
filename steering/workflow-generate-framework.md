@@ -10,7 +10,7 @@
 | Web | Playwright | Java | TestNG/JUnit5 | Allure |
 | Web | Playwright | Python | Pytest | pytest-html, Allure |
 | Web | Selenium | Java | TestNG | Allure, ExtentReports |
-| Mobile | Appium | Java | TestNG | Allure, ExtentReports |
+| Mobile | Appium (Java only) | Java | TestNG | Allure, ExtentReports |
 | API | REST Assured | Java | TestNG | Allure |
 | API | Playwright API | TypeScript | Playwright Test | HTML Report |
 
@@ -21,7 +21,7 @@
 Hỏi user:
 - Platform? (Web / Mobile / API / Hybrid)
 - Framework? (Playwright / Selenium / Appium)
-- Ngôn ngữ? (TypeScript / Java / Python)
+- Ngôn ngữ? (TypeScript / Java / Python). **Appium chỉ hỗ trợ Java**, không đề xuất TS/Python cho Appium
 - Project name?
 - CI/CD? (GitHub Actions / GitLab CI / Jenkins)
 - Reporting tool?
@@ -39,13 +39,13 @@ Tạo thư mục + file cấu hình gốc theo stack:
 
 - **Configuration Management** — đọc .env, typed config
 - **Browser/Driver Management** — Factory pattern, thread-safe
-- **Base Page/Screen** — common methods, smart waits, screenshot on failure
+- **Base Page** (web) / **Screen Object** (mobile, hậu tố `Screen`, kế thừa `BasePage`) — common methods, smart waits, screenshot on failure. Mobile scaffold từ `templates/appium/`
 - **Base Test** — setup/teardown, lifecycle hooks
 - **Utilities** — TestDataGenerator, WaitHelper, ScreenshotUtil, Logger
 
 ### Bước 4: Sinh Example Tests
 
-- 1 example Page Object (LoginPage)
+- 1 example Page Object (LoginPage) hoặc Screen Object (LoginScreen) cho mobile
 - 1 example Test (LoginTest) — Arrange → Act → Assert
 - 1 data-driven test (nếu phù hợp)
 

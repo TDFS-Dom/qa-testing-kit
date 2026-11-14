@@ -61,6 +61,15 @@ await expect(page.getByRole('button', { name: 'Submit' })).toBeVisible();
 
 **Fix:** Mock external services, proper setup/teardown
 
+### 5. Mobile/Appium Flaky
+**Problem & Fix:**
+- Animation/transition chưa xong → chờ element visible/clickable bằng `WebDriverWait`, không sleep; có thể tắt animation trên emulator
+- Keyboard che element → `hideKeyboard()` (trên `AndroidDriver`/`IOSDriver`) trước khi tap
+- System popup (permission, alert) → `setAutoGrantPermissions(true)` (Android), `setAutoAcceptAlerts(true)` (iOS)
+- Scroll chưa xong/chưa tới element → dùng W3C gesture hoặc `UiScrollable`, rồi chờ element hiển thị
+- Session/app state không reset → mỗi test tạo session mới, `quit()` ở teardown, dùng `noReset`/`fullReset` hợp lý
+Chi tiết: `appium-rules.md`.
+
 ## Stability Checklist
 
 Sau khi fix, verify:

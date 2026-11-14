@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- Chạy song song: đổi parallel="tests" và thread-count bằng số device. Mỗi thread dùng đúng 1 device. -->
+<suite name="AppiumSample" parallel="false">
+    <test name="LoginSample">
+        <classes>
+            <class name="com.qakit.appium.tests.LoginTest"/>
+        </classes>
+    </test>
+</suite>

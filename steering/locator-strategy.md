@@ -52,9 +52,5 @@ Trước khi đưa locator vào code, phải kiểm tra:
 5. `xpath` — Lựa chọn cuối cùng
 
 ### Appium (Mobile)
-1. `accessibility id` — Cross-platform, ổn định nhất
-2. `resource-id` (Android)
-3. `id`
-4. `iOS predicate string` (iOS)
-5. `iOS class chain` (iOS)
-6. `xpath` — Lựa chọn cuối cùng
+Nguồn chính: `appium-rules.md` mục 4.
+1. `accessibility id` → 2. `id` / `resource-id` → 3. iOS class chain / predicate → 4. UiAutomator (Android) → 5. `className` → 6. `xpath` (cuối cùng)
